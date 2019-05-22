@@ -16,7 +16,7 @@ class PartyList extends Component {
   }
 
   deleteParty = id => {
-    this.setState({ deletingPartyId: id });
+    // this.setState({ deletingPartyId: id });
     this.props.deleteParty(id);
   };
 
@@ -40,21 +40,23 @@ class PartyList extends Component {
         {this.props.parties.map(party => {
           return (
             <div className="CardStuff">
-              <button
+              {/* <button
                 onClick={() => this.setState({ editingPartyId: party.id })}
               >
                 Edit Party
-              </button>
-              <button onClick={() => this.deleteParty(party.id)}>
-                Delete Party
-              </button>
+              </button> */}
               <p>Theme: {party.theme}</p>
-              <p>Guests: {party.guest}</p>
+              <p>Guests: {party.guests_num}</p>
               <p>Budget: {party.budget}</p>
               <p>Date: {party.date}</p>
               <p>Moodboard Theme: {party.moodboard_theme}</p>
               {this.props.deletingParty &&
-                this.state.deletingPartyId == party.id && <p>Deleting Party</p>}
+                this.state.deletingPartyId == party.id && (
+                  <p>Deleting Party</p>
+                )}
+              <button onClick={() => this.deleteParty(party.id)}>
+                Delete Party
+              </button>
             </div>
           );
         })}

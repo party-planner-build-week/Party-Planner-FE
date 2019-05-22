@@ -50,6 +50,7 @@ class PartyForm extends Component {
             type="number"
             name="guests_num"
             placeholder="# of guests..."
+            required
             onChange={this.handleChanges}
             value={this.state.party.guests_num}
           />
@@ -58,6 +59,7 @@ class PartyForm extends Component {
             type="text"
             name="theme"
             placeholder="kids party"
+            required
             onChange={this.handleChanges}
             value={this.state.party.theme}
           />
@@ -65,6 +67,7 @@ class PartyForm extends Component {
             type="number"
             name="budget"
             placeholder="$500"
+            required
             onChange={this.handleChanges}
             value={this.state.party.budget}
           />
@@ -74,12 +77,18 @@ class PartyForm extends Component {
             id="start"
             name="date"
             min="2019-05-21"
+            required
             onChange={this.handleChanges}
             value={this.state.party.date}
           />
           <button onSubmit={this.addParty}>
             {this.props.addingFriend ? (
-              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+              <Loader
+                type="ThreeDots"
+                color="#1f2a38"
+                height="12"
+                width="26"
+              />
             ) : (
               "Add Party"
             )}

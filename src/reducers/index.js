@@ -107,7 +107,7 @@ const reducer = (state = initialState, action) => {
         deletingParty: false,
         error: "",
         errorStatusCode: null,
-        parties: action.payload
+        parties: state.parties.filter(party => party.id !== action.payload)
       };
     // E D I T P A R T Y
     case EDIT_PARTY_START:

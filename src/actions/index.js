@@ -67,11 +67,14 @@ export const USER_UNAUTHORIZED = "PARTY_FAILURE";
 
 export const getParty = () => dispatch => {
   dispatch({ type: PARTY_START });
-  let userId = localStorage.getItem('userId');
+  let userId = localStorage.getItem("userId");
   return axios
-    .get(`https://party-planner-john.herokuapp.com/api/parties/${userId}/yours`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+    .get(
+      `https://party-planner-john.herokuapp.com/api/parties/${userId}/yours`,
+      {
+        headers: { Authorization: localStorage.getItem("token") }
+      }
+    )
     .then(res => {
       console.log(res.data.party);
       dispatch({ type: PARTY_SUCCESS, payload: res.data });
@@ -123,11 +126,11 @@ export const deleteParty = id => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
-      console.table(res);
-      dispatch({ type: DELETE_PARTY_SUCCESS, payload: res.data });
+      console.log(res);
+      dispatch({ type: DELETE_PARTY_SUCCESS, payload: id });
     })
     .catch(err => {
-      console.table("catch these hands bruh", err);
+      console.log("catch these hands bruh", err);
       if (err.response.status === 403) {
         dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
       } else {
@@ -151,10 +154,11 @@ export const editParty = party => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     }
       .then(res => {
-        console.table(res);
+        console.log(res);
         dispatch({ type: EDIT_PARTY_SUCCESS, payload: res.data });
       })
       .catch(err => {
+        console.log("catch these hands bruhh", err);
         if (err.response.status === 403) {
           dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
         } else {
