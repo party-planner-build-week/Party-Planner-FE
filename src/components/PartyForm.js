@@ -12,7 +12,7 @@ class PartyForm extends Component {
       budget: "",
       moodboard_theme: "catness everdeen",
       completed: false,
-      user_id: localStorage.getItem("userId") 
+      user_id: localStorage.getItem("userId")
     }
   };
 
@@ -83,12 +83,7 @@ class PartyForm extends Component {
           />
           <button onSubmit={this.addParty}>
             {this.props.addingFriend ? (
-              <Loader
-                type="ThreeDots"
-                color="#1f2a38"
-                height="12"
-                width="26"
-              />
+              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
               "Add Party"
             )}

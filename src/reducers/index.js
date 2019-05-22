@@ -121,7 +121,7 @@ const reducer = (state = initialState, action) => {
         editingParty: false,
         error: "",
         errorStatusCode: null,
-        parties: action.payload
+        parties: state.parties.filter(party => party.id !== action.payload)
       };
     default:
       return state;

@@ -145,25 +145,33 @@ export const EDIT_PARTY_START = "EDIT_PARTY_START";
 export const EDIT_PARTY_SUCCESS = "EDIT_PARTY_SUCCESS";
 export const EDIT_PARTY_FAILURE = "EDIT_PARTY_FAILURE";
 
-export const editParty = party => dispatch => {
+export const editParty = (party, id)=> dispatch => {
   dispatch({ type: EDIT_PARTY_START });
   return axios.put(
-    `https://party-planner-john.herokuapp.com/api/parties/${party.id}`,
+    `https://party-planner-john.herokuapp.com/api/parties/${id}`,
     party,
     {
       headers: { Authorization: localStorage.getItem("token") }
-    }
+    })
       .then(res => {
         console.log(res);
         dispatch({ type: EDIT_PARTY_SUCCESS, payload: res.data });
       })
       .catch(err => {
-        console.log("catch these hands bruhh", err);
+        console.log(id);
         if (err.response.status === 403) {
           dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
         } else {
           dispatch({ type: EDIT_PARTY_FAILURE, payload: err.response });
         }
       })
-  );
 };
+
+
+
+// T O D O L I S T
+
+export const TODO_START = 'TODO_START'
+export const TODO_SUCCESS = 'TODO_SUCCESS'
+export const TODO_FAILURE = 'TODO_FAILTURE'
+

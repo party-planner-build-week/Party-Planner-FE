@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Loader from "react-loader-spinner";
+import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { editParty } from "../actions";
 
 class EditParty extends Component {
   state = {
@@ -9,9 +12,29 @@ class EditParty extends Component {
       date: "",
       budget: "",
       moodboard_theme: "catness everdeen",
-      completed: false,
+      completed: false
     }
   };
+
+
+  editParty = e => {
+    e.preventDefault();
+    this.props.toggleEdit(e);
+  };
+
+  submitEdits = e => {
+    e.preventDefault();
+    console.log(this.props.partyId)
+    this.props.editParty(this.state.party, this.props.partyId); 
+  };
+
+  taslim = e => {
+    e.preventDefault();
+    return (
+      this.submitEdits(e), 
+      this.props.toggleEdit(e)
+    )
+  }
 
   handleChanges = e => {
     this.setState({
@@ -23,6 +46,7 @@ class EditParty extends Component {
   };
 
   render() {
+    console.log(this.props.partyId);
     return (
       <div>
         <form onSubmit={this.editParty}>
@@ -62,10 +86,20 @@ class EditParty extends Component {
             value={this.state.party.date}
           />
         </form>
-        <button onClick={this.editParty}>Submit Edits</button>
+        <button onClick={e => this.taslim(e)}>Submit Edits</button>
+        <button onClick={e => this.props.toggleEdit(e)}>Cancel Edits</button>
       </div>
     );
   }
 }
 
-export default EditParty;
+const mapStateToProps = state => ({
+  editingParty: state.editingParty
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { editParty }
+  )(EditParty)
+);

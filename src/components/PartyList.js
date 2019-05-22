@@ -4,22 +4,25 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { getParty, deleteParty, editParty } from "../actions";
 import EditParty from "./EditParty";
+import Party from './Party';
 
 class PartyList extends Component {
   state = {
     deletingParty: null,
-    editingParty: null
+    editingParty: false
   };
+
+componentDidUpdate(prevState) {
+  if (prevState.editingParty !== this.state.editingParty) {
+    return this.props.getParty();
+  }
+}
 
   componentDidMount() {
     this.props.getParty();
   }
 
-  deleteParty = id => {
-    // this.setState({ deletingPartyId: id });
-    this.props.deleteParty(id);
-  };
-
+  
   render() {
     // if (this.props.fetchingParties)
     //   return (
@@ -30,34 +33,22 @@ class PartyList extends Component {
     console.log(this.props.parties);
     return (
       <div>
-        <h2>Current PartyList!</h2>
-        {/* <div>
-                  <EditParty 
-                  party={this.party}
-                  editParty={this}
-                  />
-                </div> */}
         {this.props.parties.map(party => {
           return (
-            <div className="CardStuff">
-              {/* <button
-                onClick={() => this.setState({ editingPartyId: party.id })}
-              >
-                Edit Party
-              </button> */}
-              <p>Theme: {party.theme}</p>
-              <p>Guests: {party.guests_num}</p>
-              <p>Budget: {party.budget}</p>
-              <p>Date: {party.date}</p>
-              <p>Moodboard Theme: {party.moodboard_theme}</p>
-              {this.props.deletingParty &&
-                this.state.deletingPartyId == party.id && (
-                  <p>Deleting Party</p>
-                )}
-              <button onClick={() => this.deleteParty(party.id)}>
-                Delete Party
-              </button>
-            </div>
+            <>
+                <div className="CardStuff">
+                  <Party
+                    theme={party.theme}
+                    guests={party.guests_num}
+                    budget={party.budget}
+                    date={party.date}
+                    moodboard_theme={party.moodboard_theme}
+                    partyId={party.id}
+                    key={party.id}
+                    toggle
+                  />
+                </div>
+            </>
           );
         })}
       </div>
