@@ -38,10 +38,7 @@
     url(https://fonts.gstatic.com/s/raleway/v13/1Ptrg8zYS_SKggPNwK4vWqZPBQ.ttf)
       format("truetype");
 }
-:root {
-  --primary-color: #59dab8;
-  --dark-blue: #1f2a38;
-}
+
 
 html,
 body,
@@ -170,7 +167,7 @@ input:active {
   flex-grow: 1;
 }
 
-form > button {
+form > .button {
   font-weight: 600;
   text-align: center;
   font-size: 19px;
@@ -191,7 +188,7 @@ form > button {
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-form > button:hover {
+form > .button:hover {
   background: #1f2a38;
   color: #ffffff;
   cursor: pointer;
@@ -201,55 +198,23 @@ form > button:hover {
   border: none;
 }
 
-.friends {
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
-
-.friend-card {
-  position: relative;
-  width: 280px;
-  background-color: #ffffff;
-  margin-bottom: 16px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.fa-times {
-  position: absolute;
-  right: 8px;
-  top: 6px;
-  color: #fa7981;
-  cursor: pointer;
-}
-
-.fa-pencil-alt {
-  position: absolute;
-  right: 26px;
-  top: 6px;
-  color: var(--primary-color);
-  cursor: pointer;
-}
-
-.friend-form {
-  height: 100%;
-  width: 100%;
-  padding: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(120deg, rgb(132, 250, 176), rgb(89, 218, 184));
-}
-
-.friend-form > h2 {
-  margin: 0 0 24px;
-}
-
 .WelcomePage {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.PartyCard {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5rem;
+  background: whitesmoke;
+  padding: 50px;
+  width: 100%
+}
+
+.EditCard {
+  display: flex;
+  flex-direction: column;
 }

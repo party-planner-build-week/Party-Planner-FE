@@ -16,17 +16,32 @@ import {
   DELETE_PARTY_FAILURE,
   EDIT_PARTY_START,
   EDIT_PARTY_SUCCESS,
-  EDIT_PARTY_FAILURE
+  EDIT_PARTY_FAILURE,
+  TODO_START,
+  TODO_SUCCESS,
+  TODO_FAILURE,
+  ADD_TODO_START,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAILURE
 } from "../actions";
 
 const initialState = {
   loggingIn: false,
   isLoggedIn: false,
+  
   addingParty: false,
   deletingParty: false,
   editingParty: false,
   parties: [],
   fetchingParties: false,
+
+  fetchingTodo: false,
+  partyTodo: [],
+  addPartyTodo: false,
+  deletePartyTodo: false,
+
+  partyWithShopping: [],
+
   error: "",
   errorStatusCode: null
 };
@@ -122,6 +137,31 @@ const reducer = (state = initialState, action) => {
         error: "",
         errorStatusCode: null,
         parties: state.parties.filter(party => party.id !== action.payload)
+      };
+    // T O D O S T A R T
+    case TODO_START:
+      return {
+        ...state,
+        fetchingTodo: true
+      };
+    case TODO_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        errorStatusCode: null,
+        partyTodo: action.payload.todo
+      };
+    case ADD_TODO_START:
+      return {
+        ...state,
+        addPartyWithTodo: true
+      };
+    case ADD_TODO_SUCCESS:
+      return {
+        ...state,
+        addPartyWithTodo: false,
+        partyTodo: [...state.partyTodo, action.payload],
+        error: ""
       };
     default:
       return state;

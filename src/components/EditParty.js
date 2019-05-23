@@ -49,7 +49,7 @@ class EditParty extends Component {
     console.log(this.props.partyId);
     return (
       <div>
-        <form onSubmit={this.editParty}>
+        <form className="EditCard" onSubmit={this.editParty}>
           <input
             type="number"
             name="guests_num"
@@ -87,7 +87,9 @@ class EditParty extends Component {
           />
         </form>
         <button onClick={e => this.taslim(e)}>Submit Edits</button>
-        <button onClick={e => this.props.toggleEdit(e)}>Cancel Edits</button>
+        <button onClick={e => this.props.toggleEdit(e)}>
+          Cancel Edits
+        </button>
       </div>
     );
   }

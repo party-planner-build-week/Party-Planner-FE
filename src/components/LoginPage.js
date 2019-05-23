@@ -52,7 +52,7 @@ class Login extends React.Component {
           <div className="flex-spacer" />
           {this.props.error && <p className="error">{this.props.error}</p>}
 
-          <button>
+          <button className="button">
             {this.props.loggingIn ? (
               <Loader
                 type="ThreeDots"

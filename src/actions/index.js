@@ -1,4 +1,5 @@
 import axios from "axios";
+import dist from "react-loader-spinner/dist";
 
 // L O G I N
 
@@ -145,33 +146,106 @@ export const EDIT_PARTY_START = "EDIT_PARTY_START";
 export const EDIT_PARTY_SUCCESS = "EDIT_PARTY_SUCCESS";
 export const EDIT_PARTY_FAILURE = "EDIT_PARTY_FAILURE";
 
-export const editParty = (party, id)=> dispatch => {
+export const editParty = (party, id) => dispatch => {
   dispatch({ type: EDIT_PARTY_START });
-  return axios.put(
-    `https://party-planner-john.herokuapp.com/api/parties/${id}`,
-    party,
-    {
+  return axios
+    .put(`https://party-planner-john.herokuapp.com/api/parties/${id}`, party, {
       headers: { Authorization: localStorage.getItem("token") }
     })
-      .then(res => {
-        console.log(res);
-        dispatch({ type: EDIT_PARTY_SUCCESS, payload: res.data });
-      })
-      .catch(err => {
-        console.log(id);
-        if (err.response.status === 403) {
-          dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
-        } else {
-          dispatch({ type: EDIT_PARTY_FAILURE, payload: err.response });
-        }
-      })
+    .then(res => {
+      console.log(res);
+      dispatch({ type: EDIT_PARTY_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(id);
+      if (err.response.status === 403) {
+        dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
+      } else {
+        dispatch({ type: EDIT_PARTY_FAILURE, payload: err.response });
+      }
+    });
 };
-
-
 
 // T O D O L I S T
 
-export const TODO_START = 'TODO_START'
-export const TODO_SUCCESS = 'TODO_SUCCESS'
-export const TODO_FAILURE = 'TODO_FAILTURE'
+export const TODO_START = "TODO_START";
+export const TODO_SUCCESS = "TODO_SUCCESS";
+export const TODO_FAILURE = "TODO_FAILURE";
+
+export const getTodo = id => dispatch => {
+  dispatch({ type: TODO_START });
+  return axios.get(
+    `https://party-planner-john.herokuapp.com/api/parties/3`,
+    {
+      headers: { Authorization: localStorage.getItem("token") }
+    }
+  )
+  .then((res) => {
+    console.log(res.data.todo)
+    dispatch({type: TODO_SUCCESS, payload: res.data})
+    
+  }).catch((err) => {
+    console.log('failed bruh', err)
+      dispatch({type: TODO_FAILURE, payload: err.response})
+    
+  });
+};
+
+export const ADD_TODO_START = "ADD_TODO_START";
+export const ADD_TODO_SUCCESS = "ADD_TODO_SUCCESS";
+export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE";
+
+export const addTodo = (todo) => dispatch => {
+  console.log(todo)
+dispatch({type: ADD_TODO_START });
+return axios
+  .post(
+    `https://party-planner-john.herokuapp.com/api/parties/3/todo`,
+    todo,
+    {
+      headers: { Authorization: localStorage.getItem("token") }
+    }
+  )
+  .then(res => {
+    console.log(res);
+    dispatch({ type: ADD_TODO_SUCCESS, payload: res.data });
+  })
+  .catch(err => {
+    console.log(err);
+    dispatch({ type: ADD_TODO_FAILURE, payload: err.reponse });
+  });
+
+}
+
+export const DELETE_TODO_START = "DELETE_TODO_START";
+export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
+export const DELETE_TODO_FAILURE = "DELETE_TODO_FAILURE";
+
+export const deleteTodo = id => dispatch => {
+dispatch({type: ADD_TODO_START });
+return axios
+.delete(`https://party-planner-john.herokuapp.com/api/parties/${id}/todo`, 
+{
+  headers: {Authorization: localStorage.getItem('token')}
+})
+.then((res) => {
+  console.log(res)
+  dispatch({type: ADD_TODO_SUCCESS, payload: res.data})
+}).catch((err) => {
+  console.log(err);
+  if(err.reponse.status === 403) {
+    dispatch({type: USER_UNAUTHORIZED, payload: err.reponse})
+  } else {
+    dispatch({type: ADD_TODO_FAILURE, payload: err.reponse})
+  }
+});
+
+}
+
+
+// S H O P P I N G L I S T
+
+export const SHOPPING_START = "SHOPPING_START";
+export const SHOPPING_SUCCESS = "SHOPPING_SUCCESS";
+export const SHOPPING_FAILURE = "SHOPPING_FAILTURE";
 

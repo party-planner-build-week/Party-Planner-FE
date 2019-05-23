@@ -10,7 +10,7 @@ class PartyForm extends Component {
       theme: "",
       date: "",
       budget: "",
-      moodboard_theme: "catness everdeen",
+      moodboard_theme: "",
       completed: false,
       user_id: localStorage.getItem("userId")
     }
@@ -46,6 +46,14 @@ class PartyForm extends Component {
       <div>
         Add a new party POGGERS
         <form onSubmit={this.addParty}>
+          <input
+            type="text"
+            name="moodboard_theme"
+            placeholder="Whats the party theme?"
+            required
+            onChange={this.handleChanges}
+            value={this.state.party.moodboard_theme}
+          />
           <input
             type="number"
             name="guests_num"
@@ -83,7 +91,12 @@ class PartyForm extends Component {
           />
           <button onSubmit={this.addParty}>
             {this.props.addingFriend ? (
-              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+              <Loader
+                type="ThreeDots"
+                color="#1f2a38"
+                height="12"
+                width="26"
+              />
             ) : (
               "Add Party"
             )}

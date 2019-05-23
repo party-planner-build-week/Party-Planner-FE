@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
 import { getParty, deleteParty, editParty } from "../actions";
-import EditParty from "./EditParty";
-import Party from './Party';
+import Party from "./Party";
+import TodoList from "./TodoList";
+import ShoppingList from "./ShoppingList";
+import "../style.css";
 
 class PartyList extends Component {
   state = {
@@ -12,42 +13,39 @@ class PartyList extends Component {
     editingParty: false
   };
 
-componentDidUpdate(prevState) {
-  if (prevState.editingParty !== this.state.editingParty) {
-    return this.props.getParty();
+  componentDidUpdate(prevState) {
+    if (prevState.editingParty !== this.state.editingParty) {
+      return this.props.getParty();
+    }
   }
-}
 
   componentDidMount() {
     this.props.getParty();
   }
 
-  
   render() {
-    // if (this.props.fetchingParties)
-    //   return (
-    //     <div>
-    //       <Loader type="Puff" color="#ffffff" height="100" width="100" />
-    //     </div>
-    //   );
-    console.log(this.props.parties);
+    // console.log(this.props.parties);
     return (
       <div>
+        <h2>Current PartyList!</h2>
         {this.props.parties.map(party => {
           return (
             <>
-                <div className="CardStuff">
-                  <Party
-                    theme={party.theme}
-                    guests={party.guests_num}
-                    budget={party.budget}
-                    date={party.date}
-                    moodboard_theme={party.moodboard_theme}
-                    partyId={party.id}
-                    key={party.id}
-                    toggle
-                  />
-                </div>
+              <h4> {party.theme}</h4>
+              <div className="PartyCard">
+                <Party
+                  theme={party.theme}
+                  guests={party.guests_num}
+                  budget={party.budget}
+                  date={party.date}
+                  moodboard_theme={party.moodboard_theme}
+                  partyId={party.id}
+                  key={party.id}
+
+                />
+                <TodoList partyId={party.id} />
+                <ShoppingList />
+              </div>
             </>
           );
         })}

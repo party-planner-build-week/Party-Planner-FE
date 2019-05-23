@@ -39,7 +39,7 @@ class Party extends Component {
       );
     return (
       <div>
-        <h2>Current PartyList!</h2>
+        
         {this.state.editingParty ? (
           <EditParty  partyId={this.props.partyId} toggleEdit={this.toggleEdit} />
         ) : (
@@ -48,6 +48,7 @@ class Party extends Component {
             <p>Guests: {this.props.guests}</p>
             <p>Budget: {this.props.budget}</p>
             <p>Date: {this.props.date}</p>
+            <p> {this.props.partyId}</p>
             <p>Moodboard Theme: {this.props.moodboard_theme}</p>
             <button onClick={e => this.toggleEdit(e)}>Edit Party</button>
             <button onClick={() => this.deleteParty(this.props.partyId)}>
@@ -55,6 +56,9 @@ class Party extends Component {
             </button>
           </div>
         )}
+
+        {/* { this.state.addTodoList } */}
+
       </div>
     );
   }
