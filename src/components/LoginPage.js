@@ -31,9 +31,10 @@ class Login extends React.Component {
   render() {
     return (
       <div className="login-form">
-        <form className="form" onSubmit={this.login}>
-          <h4>Login with your newly created credentials.</h4>
-          <label for="username">Account</label>
+        <form className="ui form" onSubmit={this.login}>
+          <div className="ui visible message">Login with your newly created Credentials.</div>
+          <div className="field">
+          <label>Username</label>
           <input
             type="text"
             name="username"
@@ -41,7 +42,9 @@ class Login extends React.Component {
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
-          <label for="password">Password</label>
+          </div>
+           <div className="field">
+          <label>Password</label>
           <input
             type="password"
             name="password"
@@ -49,10 +52,11 @@ class Login extends React.Component {
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
+          </div>
           <div className="flex-spacer" />
           {this.props.error && <p className="error">{this.props.error}</p>}
 
-          <button className="button">
+          <button className="ui button">
             {this.props.loggingIn ? (
               <Loader
                 type="ThreeDots"

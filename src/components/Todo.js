@@ -5,7 +5,6 @@ const Todo = props => {
   return (
   <li> 
     {props.task.task}
-    
   </li>
   )
 }

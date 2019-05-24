@@ -43,72 +43,97 @@ class PartyForm extends Component {
   render() {
     console.log(this.state.party.user_id);
     return (
-      <div>
-        Add a new party POGGERS
-        <form onSubmit={this.addParty}>
-          <input
-            type="text"
-            name="moodboard_theme"
-            placeholder="Whats the party theme?"
-            required
-            onChange={this.handleChanges}
-            value={this.state.party.moodboard_theme}
-          />
-          <input
-            type="number"
-            name="guests_num"
-            placeholder="# of guests..."
-            required
-            onChange={this.handleChanges}
-            value={this.state.party.guests_num}
-          />
+      <div className="ui container align-middle ">
+        <div className="ui floating message">Fill Out The For Below!</div>
+        <div className="ui horizontal segments">
+          <div class="ui segment"><p>Hi There! we are currently still building out features to please bare with us! to the left you can create a party form.</p></div>
+          <div class="ui segment">
+            <form className="ui form" onSubmit={this.addParty}>
+              <div className="field">
+                <label> Occasion</label>
+                <input
+                  type="text"
+                  name="theme"
+                  placeholder="What is your Ocassion? Bens Birthday..."
+                  required
+                  onChange={this.handleChanges}
+                  value={this.state.party.theme}
+                />
+              </div>
+              <div className="field">
+                <label>Party Theme</label>
+                <input
+                  type="text"
+                  name="moodboard_theme"
+                  placeholder="Theme of Party? Disney themed..."
+                  required
+                  onChange={this.handleChanges}
+                  value={this.state.party.moodboard_theme}
+                />
+              </div>
 
-          <input
-            type="text"
-            name="theme"
-            placeholder="kids party"
-            required
-            onChange={this.handleChanges}
-            value={this.state.party.theme}
-          />
-          <input
-            type="number"
-            name="budget"
-            placeholder="$500"
-            required
-            onChange={this.handleChanges}
-            value={this.state.party.budget}
-          />
+              <div className="field">
+                <label>Guests amount</label>
+                <input
+                  type="number"
+                  name="guests_num"
+                  placeholder="Number of Guests Expected?"
+                  required
+                  onChange={this.handleChanges}
+                  value={this.state.party.guests_num}
+                />
+              </div>
+              <div className="field">
+                <label>Budget</label>
+                <input
+                  type="number"
+                  name="budget"
+                  placeholder="Budget for Your Event?"
+                  required
+                  onChange={this.handleChanges}
+                  value={this.state.party.budget}
+                />
+              </div>
 
-          <input
-            type="date"
-            id="start"
-            name="date"
-            min="2019-05-21"
-            required
-            onChange={this.handleChanges}
-            value={this.state.party.date}
-          />
-          <button onSubmit={this.addParty}>
-            {this.props.addingFriend ? (
-              <Loader
-                type="ThreeDots"
-                color="#1f2a38"
-                height="12"
-                width="26"
-              />
-            ) : (
-              "Add Party"
-            )}
-          </button>
-        </form>
+              <div className="field">
+                <label> Event Date</label>
+                <input
+                  type="date"
+                  id="start"
+                  name="date"
+                  min="2019-05-21"
+                  required
+                  onChange={this.handleChanges}
+                  value={this.state.party.date}
+                />
+              </div>
+              <button
+                className="ui positive button"
+                onSubmit={this.addParty}
+              >
+                {this.props.addingParty ? (
+                  <Loader
+                    type="ThreeDots"
+                    color="#1f2a38"
+                    height="12"
+                    width="26"
+                  />
+                ) : (
+                  "Add Party"
+                )}
+              </button>
+            </form>
+          </div>
+          {/* <div class="ui segment">Thank you for trying out our application! we apperciate all the support</div> */}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  addingParty: state.addingParty
+  addingParty: state.addingParty,
+  loggingIn: state.loggingIn
 });
 
 export default connect(

@@ -6,6 +6,7 @@ import {
   withRouter
 } from "react-router-dom";
 
+
 import WelcomePage from "./components/WelcomePage";
 import Login from "./components/LoginPage";
 import Register from "./components/RegisterPage";
@@ -13,31 +14,45 @@ import PartyList from "./components/PartyList";
 import PartyForm from "./components/PartyForm";
 import PrivateRouter from "./components/PrivateRouter";
 
+
+import './style.css'
+
 class App extends Component {
   logout = e => {
     e.preventDefault();
     localStorage.removeItem("token");
-    localStorage.removeItem('userId');
+    localStorage.removeItem("userId");
     this.props.history.push("/");
   };
   render() {
     return (
-      <div className="App">
-        <nav>
+      <div className="App container fluid">
+        <nav className="menu">
           <ul>
-            <NavLink to="/">Home</NavLink>
             {localStorage.getItem("token") ? (
               <>
-                <NavLink to="/partyform">Add a Party</NavLink>
-                <NavLink to="/partylist">Party List</NavLink>
-                <button onClick={this.logout} to="/">
+                <NavLink activeClassName="active" to="/partylist">
+                  Party List
+                </NavLink>
+                <NavLink activeClassName="active" to="/partyform">
+                  Add a Party
+                </NavLink>
+
+                <button
+                  className="ui secondary button"
+                  onClick={this.logout}
+                  to="/"
+                >
                   Logout
                 </button>
               </>
             ) : (
               <Fragment>
+                <NavLink to="/">Home</NavLink>
                 <NavLink to="/login">Login</NavLink>
-                <NavLink to="/register">Register</NavLink>
+                <NavLink className="" to="/register">
+                  Register
+                </NavLink>
               </Fragment>
             )}
           </ul>

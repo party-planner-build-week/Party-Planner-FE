@@ -39,26 +39,39 @@ class Party extends Component {
       );
     return (
       <div>
-        
         {this.state.editingParty ? (
-          <EditParty  partyId={this.props.partyId} toggleEdit={this.toggleEdit} />
+          <EditParty
+            partyId={this.props.partyId}
+            toggleEdit={this.toggleEdit}
+          />
         ) : (
           <div>
-            <p>Theme: {this.props.theme}</p>
-            <p>Guests: {this.props.guests}</p>
-            <p>Budget: {this.props.budget}</p>
-            <p>Date: {this.props.date}</p>
-            <p> {this.props.partyId}</p>
-            <p>Moodboard Theme: {this.props.moodboard_theme}</p>
-            <button onClick={e => this.toggleEdit(e)}>Edit Party</button>
-            <button onClick={() => this.deleteParty(this.props.partyId)}>
+            <h3 className="event-title">Occasion </h3>
+            <p>{this.props.theme}</p>
+            <h3 className="event-title">Party Theme</h3>
+            <p>{this.props.moodboard_theme}</p>
+            <h3 className="event-title">Guests amount </h3>
+            <p>{this.props.guests}</p>
+            <h3 className="event-title">Budget</h3>
+            <p>{this.props.budget}</p>
+            <h3 className="event-title">Event Date</h3>
+            <p>{this.props.date}</p>
+            <button
+              className="ui button positive"
+              onClick={e => this.toggleEdit(e)}
+            >
+              Edit Party
+            </button>
+            <button
+              className="ui button negative"
+              onClick={() => this.deleteParty(this.props.partyId)}
+            >
               Delete Party
             </button>
           </div>
         )}
 
         {/* { this.state.addTodoList } */}
-
       </div>
     );
   }

@@ -41,7 +41,7 @@ class TodoList extends Component {
     });
 
   render() {
-    console.log(this.props.partyTodo);
+    // console.log(this.props.partyTodo);
     return (
       <div>
         {/* {this.props.partyTodo &&
@@ -61,7 +61,11 @@ class TodoList extends Component {
         </form>
         <button onClick={this.addTodo}>Add to List</button>
         <button onClick={this.deleteTodo}>Delete from List</button> */}
-        <p>Task List is not working currently.</p>
+         <div class="ui compact menu">
+      <div className="disabled item">
+        <p>Task List is currently not working.</p>
+        </div>
+        </div>
       </div>
     );
   }

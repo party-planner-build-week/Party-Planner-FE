@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { register } from "../actions/";
+import Loader from 'react-loader-spinner';
 import { Link } from "react-router-dom";
 import "../App.css";
 
@@ -32,8 +33,12 @@ class RegisterPage extends Component {
   render() {
     return (
       <div className="login-form">
-        <form className="form" onSubmit={this.register}>
-          <h4>Create your Login and you'll be redirected to the login page.</h4>
+        <form className="ui form" onSubmit={this.register}>
+          <div className="ui visible message">
+            Create a Username and Password!
+          </div>
+              <div className="field">
+            <label>Username</label>
           <input
             className="registerInput"
             type="text"
@@ -42,6 +47,9 @@ class RegisterPage extends Component {
             value={this.state.newCredentials.username}
             onChange={this.handleChange}
           />
+          </div>
+              <div className="field">
+            <label>Password</label>
           <input
             className="registerInput"
             type="password"
@@ -50,8 +58,18 @@ class RegisterPage extends Component {
             value={this.state.newCredentials.password}
             onChange={this.handleChange}
           />
-          <button className="button" onClick={this.register}>
-            Sign Up
+          </div>
+          <button className="ui button">
+            {this.props.loggingIn ? (
+              <Loader
+                type="ThreeDots"
+                color="#1f2a38"
+                height="12"
+                width="26"
+              />
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
       </div>

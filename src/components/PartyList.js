@@ -26,25 +26,35 @@ class PartyList extends Component {
   render() {
     // console.log(this.props.parties);
     return (
-      <div>
-        <h2>Current PartyList!</h2>
+      <div className="ui container">
+        <div className="ui floating message">Hey There! Go Add some Parties.</div>
         {this.props.parties.map(party => {
           return (
             <>
-              <h4> {party.theme}</h4>
-              <div className="PartyCard">
-                <Party
-                  theme={party.theme}
-                  guests={party.guests_num}
-                  budget={party.budget}
-                  date={party.date}
-                  moodboard_theme={party.moodboard_theme}
-                  partyId={party.id}
-                  key={party.id}
-
-                />
-                <TodoList partyId={party.id} />
-                <ShoppingList />
+              <div className="ui olive message">
+                <div className="content">
+                  <p>{party.theme}</p>
+                </div>
+              </div>
+              <div className="ui horizontal segments">
+                <div className="ui segment">
+                  <Party
+                    theme={party.theme}
+                    guests={party.guests_num}
+                    budget={party.budget}
+                    date={party.date}
+                    moodboard_theme={party.moodboard_theme}
+                    partyId={party.id}
+                    key={party.id}
+                    username={party.username}
+                  />
+                </div>
+                <div className="ui segment">
+                  <TodoList partyId={party.id} />
+                </div>
+                <div className="ui segment">
+                  <ShoppingList />
+                </div>
               </div>
             </>
           );
