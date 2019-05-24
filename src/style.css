@@ -45,7 +45,7 @@ li {
 a {
   text-decoration: none;
   padding: 6px;
-  color: var(--primary-color);
+  color: #111111;
 }
 
 .login-form {
@@ -209,4 +209,8 @@ form > .button:hover {
 
 .active{
   color: #1e70bf;
+}
+
+.active-home {
+  color: #445048;
 }

@@ -34,30 +34,31 @@ class RegisterPage extends Component {
     return (
       <div className="login-form">
         <form className="ui form" onSubmit={this.register}>
+          <h2>Registration Form</h2>
           <div className="ui visible message">
             Create a Username and Password!
           </div>
-              <div className="field">
+          <div className="field">
             <label>Username</label>
-          <input
-            className="registerInput"
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={this.state.newCredentials.username}
-            onChange={this.handleChange}
-          />
+            <input
+              className="registerInput"
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={this.state.newCredentials.username}
+              onChange={this.handleChange}
+            />
           </div>
-              <div className="field">
+          <div className="field">
             <label>Password</label>
-          <input
-            className="registerInput"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.newCredentials.password}
-            onChange={this.handleChange}
-          />
+            <input
+              className="registerInput"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.state.newCredentials.password}
+              onChange={this.handleChange}
+            />
           </div>
           <button className="ui button">
             {this.props.loggingIn ? (

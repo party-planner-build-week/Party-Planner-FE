@@ -32,6 +32,7 @@ class Login extends React.Component {
     return (
       <div className="login-form">
         <form className="ui form" onSubmit={this.login}>
+          <h2>Login Form</h2>
           <div className="ui visible message">Login with your newly created Credentials.</div>
           <div className="field">
           <label>Username</label>

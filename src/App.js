@@ -6,7 +6,6 @@ import {
   withRouter
 } from "react-router-dom";
 
-
 import WelcomePage from "./components/WelcomePage";
 import Login from "./components/LoginPage";
 import Register from "./components/RegisterPage";
@@ -14,8 +13,7 @@ import PartyList from "./components/PartyList";
 import PartyForm from "./components/PartyForm";
 import PrivateRouter from "./components/PrivateRouter";
 
-
-import './style.css'
+import "./style.css";
 
 class App extends Component {
   logout = e => {
@@ -48,9 +46,16 @@ class App extends Component {
               </>
             ) : (
               <Fragment>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink className="" to="/register">
+                <NavLink activeClassName="active" to="/">
+                  Home
+                </NavLink>
+                <NavLink activeClassName="active" to="/login">
+                  Login
+                </NavLink>
+                <NavLink
+                  activeClassName="active"
+                  to="/register"
+                >
                   Register
                 </NavLink>
               </Fragment>
