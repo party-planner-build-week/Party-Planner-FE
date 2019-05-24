@@ -45,10 +45,7 @@ class EditParty extends Component {
     console.log(this.props.partyId);
     return (
       <div>
-        <form
-          className="ui form extra-margin-left"
-          onSubmit={this.editParty}
-        >
+        <form className="ui form extra-margin-left" onSubmit={this.editParty}>
           <div className="field">
             <label>Occasion</label>
             <input
@@ -79,6 +76,7 @@ class EditParty extends Component {
               type="number"
               name="guests_num"
               placeholder="Number of Guests Expected?"
+              min="0"
               required
               onChange={this.handleChanges}
               value={this.state.party.guests_num}
@@ -90,6 +88,7 @@ class EditParty extends Component {
             <input
               type="number"
               name="budget"
+              min="0"
               placeholder="Budget for Your Event?"
               required
               onChange={this.handleChanges}

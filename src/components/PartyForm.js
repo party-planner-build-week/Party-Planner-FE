@@ -46,7 +46,7 @@ class PartyForm extends Component {
       <div className="ui container align-middle ">
         <div className="ui floating message">Fill Out The For Below!</div>
         <div className="ui horizontal segments">
-          <div class="ui segment"><p>Hi There! we are currently still building out features to please bare with us! to the left you can create a party form.</p></div>
+          <div class="ui segment"><p>Hi There! we are currently still building out features to please bare with us! to the right you can create a party form.</p></div>
           <div class="ui segment">
             <form className="ui form" onSubmit={this.addParty}>
               <div className="field">
@@ -77,6 +77,7 @@ class PartyForm extends Component {
                 <input
                   type="number"
                   name="guests_num"
+                   min="0"
                   placeholder="Number of Guests Expected?"
                   required
                   onChange={this.handleChanges}
@@ -88,6 +89,7 @@ class PartyForm extends Component {
                 <input
                   type="number"
                   name="budget"
+                   min="0"
                   placeholder="Budget for Your Event?"
                   required
                   onChange={this.handleChanges}
