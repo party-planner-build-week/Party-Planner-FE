@@ -172,7 +172,7 @@ form > .button:hover {
   margin-bottom: 5rem;
   background: whitesmoke;
   padding: 50px;
-  width: 100%
+  width: 100%;
 }
 
 .EditCard {
@@ -182,14 +182,13 @@ form > .button:hover {
 
 .align-left {
   text-align: left;
-
 }
 
 .ui.ribbon.label {
-    left: calc(0rem - 0.99999999em) !important;
-    margin-right: -1.2em;
-    padding-left: calc(1rem + 1.2em);
-    padding-right: 1.2em;
+  left: calc(0rem - 0.99999999em) !important;
+  margin-right: -1.2em;
+  padding-left: calc(1rem + 1.2em);
+  padding-right: 1.2em;
 }
 
 .extra-margin-left {
@@ -204,13 +203,9 @@ form > .button:hover {
 }
 
 .align-middle {
- margin: 0 auto;
+  margin: 0 auto;
 }
 
-.active{
+.active {
   color: #1e70bf;
-}
-
-.active-home {
-  color: #445048;
 }
