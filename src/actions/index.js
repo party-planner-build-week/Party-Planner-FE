@@ -13,7 +13,9 @@ export const login = creds => dispatch => {
   });
 
   return axios
-    .post("https://party-planner-john.herokuapp.com/api/auth/login", creds)
+    .post("https://party-planner-john.herokuapp.com/api/auth/login", creds, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
@@ -42,7 +44,9 @@ export const register = cred => dispatch => {
     type: REGISTER_START
   });
   return axios
-    .post("https://party-planner-john.herokuapp.com/api/auth/register", cred)
+    .post("https://party-planner-john.herokuapp.com/api/auth/register", cred, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(res => {
       console.log(res);
       dispatch({
@@ -104,9 +108,9 @@ export const addParty = party => dispatch => {
     Authorization: localStorage.getItem("token")
   };
   return axios
-    .post("https://party-planner-john.herokuapp.com/api/parties", party,
-    {
-      headers, token
+    .post("https://party-planner-john.herokuapp.com/api/parties", party, {
+      headers,
+      token
     })
     .then(res => {
       dispatch({ type: ADD_PARTY_SUCCESS, payload: res.data });

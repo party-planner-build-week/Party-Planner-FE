@@ -52,10 +52,7 @@ class App extends Component {
                 <NavLink activeClassName="active" to="/login">
                   Login
                 </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  to="/register"
-                >
+                <NavLink activeClassName="active" to="/register">
                   Register
                 </NavLink>
               </Fragment>
@@ -66,7 +63,7 @@ class App extends Component {
         <Route exact path="/" component={WelcomePage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/partyform" component={PartyForm} />
+        <PrivateRouter exact path="/partyform" component={PartyForm} />
         <PrivateRouter exact path="/partylist" component={PartyList} />
       </div>
     );
